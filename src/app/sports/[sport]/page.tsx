@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SkillSections } from "@/components/skill-sections";
 import { getSport, sports } from "@/lib/sports-data";
 
 export function generateStaticParams() {
@@ -64,26 +63,53 @@ export default async function SportPage({
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
-        <div className="flex flex-wrap gap-2">
-          {sport.skills.map((skill) => (
-            <a
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="mb-8 max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.22em] text-white/45">
+            Four skills
+          </p>
+          <h2 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            Click a skill to open its guide and video
+          </h2>
+          <p className="mt-3 text-white/65">
+            Each skill page has why it matters, how to improve, a weekly plan, and
+            a training video.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {sport.skills.map((skill, index) => (
+            <Link
               key={skill.slug}
-              href={`#${sport.slug}-${skill.slug}`}
-              className="rounded-full border border-white/15 px-4 py-2 text-sm text-white/75 transition hover:border-white/40 hover:text-white"
+              href={`/sports/${sport.slug}/${skill.slug}`}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-white/25 hover:bg-white/[0.06]"
             >
-              {skill.name}
-            </a>
+              <div className="flex items-start justify-between gap-4">
+                <span
+                  className="text-xs font-semibold uppercase tracking-[0.18em]"
+                  style={{ color: sport.accent }}
+                >
+                  Skill {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-sm text-white/40 transition group-hover:text-white">
+                  Open →
+                </span>
+              </div>
+              <h3 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-white">
+                {skill.name}
+              </h3>
+              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/65">
+                {skill.summary}
+              </p>
+              <span
+                className="mt-5 inline-flex text-sm font-semibold transition group-hover:translate-x-0.5"
+                style={{ color: sport.accent }}
+              >
+                Watch video & guide
+              </span>
+            </Link>
           ))}
         </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-5 pb-24 sm:px-8">
-        <SkillSections
-          skills={sport.skills}
-          accent={sport.accent}
-          sportSlug={sport.slug}
-        />
       </section>
 
       <section className="border-t border-white/10 bg-black/20">
