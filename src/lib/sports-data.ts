@@ -346,8 +346,8 @@ export const sports: Sport[] = [
       "Football excellence stacks athletic power with scheme knowledge, reliable tackling, and position-specific ball skills.",
     accent: "#f59e0b",
     image:
-      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "American football stadium under lights",
+      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "American football helmet on the field",
     skills: [
       {
         slug: "strength-speed-and-power",

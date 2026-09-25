@@ -10,7 +10,7 @@ export default function Home() {
           className="animate-hero-zoom absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1461896836934-ffe607ba6851?auto=format&fit=crop&w=2000&q=80)",
+              "url(https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=2000&q=80)",
           }}
         />
         <div className="absolute inset-0 bg-[#07110e]/55" />
