@@ -4,14 +4,14 @@ import type { Sport } from "@/lib/sports-data";
 export function SportGrid({ sports }: { sports: Sport[] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {sports.map((sport, index) => (
-        <SportTile key={sport.slug} sport={sport} index={index} />
+      {sports.map((sport) => (
+        <SportTile key={sport.slug} sport={sport} />
       ))}
     </div>
   );
 }
 
-function SportTile({ sport, index }: { sport: Sport; index: number }) {
+function SportTile({ sport }: { sport: Sport }) {
   return (
     <Link
       href={`/sports/${sport.slug}`}
