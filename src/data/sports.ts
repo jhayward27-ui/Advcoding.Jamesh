@@ -3,6 +3,9 @@ import type { Sport } from '../types'
 /**
  * Curated starter catalog. Each sport pairs on-field skill work with a
  * weight-room block so athletes can train the full picture.
+ *
+ * Every `youtubeId` points to a real, embeddable YouTube training video; the
+ * title/channel labels were verified against each video's public metadata.
  */
 export const sports: Sport[] = [
   {
@@ -14,27 +17,24 @@ export const sports: Sport[] = [
     videos: [
       {
         id: 'bball-1',
-        title: 'Daily Ball-Handling Routine',
+        title: 'The Ultimate 5-Minute Dribbling Workout',
         channel: 'ILoveBasketballTV',
-        duration: '11:24',
         category: 'skill',
-        youtubeId: 'Vmg0Eq7Bcqo',
+        youtubeId: 'P7NBo3yKkm4',
       },
       {
         id: 'bball-2',
-        title: 'Fix Your Jump Shot Form',
+        title: 'Find YOUR Perfect Shooting Form',
         channel: 'ShotMechanics',
-        duration: '9:02',
         category: 'skill',
-        youtubeId: 'FGqk9Nx3Uwc',
+        youtubeId: 'x7anDE7OEww',
       },
       {
         id: 'bball-3',
-        title: 'Explosive Vertical Jump Workout',
-        channel: 'THE PJF PERFORMANCE',
-        duration: '14:10',
+        title: 'Jump 5 Inches Higher in 10 Minutes',
+        channel: 'PJF Performance',
         category: 'strength',
-        youtubeId: 'l9nh1l8ZIJQ',
+        youtubeId: 'lInosfIsKOM',
       },
     ],
   },
@@ -47,58 +47,52 @@ export const sports: Sport[] = [
     videos: [
       {
         id: 'soccer-1',
-        title: 'First Touch Training Drills',
-        channel: 'AllAttack',
-        duration: '8:47',
+        title: '5 Essential First Touch Drills',
+        channel: 'Become Elite',
         category: 'skill',
-        youtubeId: 'zN4Nl-Vp3_A',
+        youtubeId: 'JbOwpq_8CeM',
       },
       {
         id: 'soccer-2',
-        title: 'Finishing & Shooting Session',
+        title: '5 First Touch Exercises for Footballers',
         channel: '7mlc',
-        duration: '10:31',
         category: 'skill',
-        youtubeId: 'a0G44Jq3Q1w',
+        youtubeId: 'el7QvVnprOk',
       },
       {
         id: 'soccer-3',
-        title: 'Speed & Agility for Footballers',
+        title: 'Speed & Agility Training Session',
         channel: '7mlc',
-        duration: '12:55',
         category: 'strength',
-        youtubeId: 'z2fN8p1cvJc',
+        youtubeId: 'Ynh_wFGlN9A',
       },
     ],
   },
   {
     id: 'tennis',
     name: 'Tennis',
-    tagline: 'Cleaner strokes, footwork patterns, and rotational strength.',
+    tagline: 'Cleaner strokes, a reliable serve, and rotational strength.',
     emoji: '🎾',
     accent: '#eab308',
     videos: [
       {
         id: 'tennis-1',
-        title: 'Forehand Technique Explained',
-        channel: 'Top Tennis Training',
-        duration: '13:18',
+        title: 'Perfect Forehand in 5 Steps',
+        channel: 'Crunch Time Coaching',
         category: 'skill',
-        youtubeId: 'Hp2Ww8Nz3sQ',
+        youtubeId: 'zhaN3TCjrDk',
       },
       {
         id: 'tennis-2',
-        title: 'Footwork Drills for Tennis',
-        channel: 'Intuitive Tennis',
-        duration: '7:39',
+        title: 'Perfect Serve in 5 Steps',
+        channel: 'Top Tennis Training',
         category: 'skill',
-        youtubeId: 'kR6TxT6d1sE',
+        youtubeId: '6998O764rKU',
       },
       {
         id: 'tennis-3',
-        title: 'Core & Rotational Power Workout',
-        channel: 'Tennis Fitness',
-        duration: '15:20',
+        title: '10-Minute Ab Workout (No Equipment)',
+        channel: 'Pamela Reif',
         category: 'strength',
         youtubeId: 'AnYl6Nk9GOA',
       },
@@ -107,31 +101,28 @@ export const sports: Sport[] = [
   {
     id: 'weightlifting',
     name: 'Weightlifting',
-    tagline: 'Barbell fundamentals and accessory work that carries over.',
+    tagline: 'Barbell fundamentals and a program that carries over.',
     emoji: '🏋️',
     accent: '#a855f7',
     videos: [
       {
         id: 'wl-1',
-        title: 'How to Squat With Perfect Form',
-        channel: 'Squat University',
-        duration: '10:05',
+        title: 'The Back Squat',
+        channel: 'CrossFit',
         category: 'skill',
         youtubeId: 'ultWZbUMPL8',
       },
       {
         id: 'wl-2',
-        title: 'Deadlift Setup & Technique',
+        title: 'How to Deadlift: 5-Step Setup',
         channel: 'Alan Thrall',
-        duration: '9:48',
         category: 'skill',
         youtubeId: 'wYREQkVtvEc',
       },
       {
         id: 'wl-3',
-        title: 'Full Body Strength Program',
+        title: 'Science-Based Minimalist Workout Plan',
         channel: 'Jeff Nippard',
-        duration: '16:42',
         category: 'strength',
         youtubeId: 'eMjyvIQbn9M',
       },

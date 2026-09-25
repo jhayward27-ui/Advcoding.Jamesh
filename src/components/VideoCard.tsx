@@ -20,7 +20,6 @@ export function VideoCard({ video, onPlay }: VideoCardProps) {
         <span className="video-card__play" aria-hidden="true">
           ▶
         </span>
-        <span className="video-card__duration">{video.duration}</span>
       </span>
       <span className="video-card__body">
         <span className="video-card__title">{video.title}</span>

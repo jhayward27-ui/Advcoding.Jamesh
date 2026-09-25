@@ -4,7 +4,6 @@ export interface TrainingVideo {
   id: string
   title: string
   channel: string
-  duration: string
   category: TrainingCategory
   /** YouTube video id used for the thumbnail and embedded player. */
   youtubeId: string
