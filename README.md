@@ -2,6 +2,8 @@
 
 Public site: [https://jhayward27-ui.github.io/Advcoding.Jamesh/](https://jhayward27-ui.github.io/Advcoding.Jamesh/)
 
+Project overview for class: [https://jhayward27-ui.github.io/Advcoding.Jamesh/project/](https://jhayward27-ui.github.io/Advcoding.Jamesh/project/)
+
 A training guide website for athletes who want to get better and grow their knowledge in a sport. Pick a sport, then open one of four major skills for training videos, how to improve, and a weekly plan.
 
 ## Sports covered
