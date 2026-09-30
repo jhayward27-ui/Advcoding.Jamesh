@@ -13,12 +13,12 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="flex items-center gap-5 text-sm text-white/75">
-          <a href="/#sports" className="transition hover:text-white">
+          <Link href="/#sports" className="transition hover:text-white">
             Sports
-          </a>
-          <a href="/#method" className="transition hover:text-white">
+          </Link>
+          <Link href="/#method" className="transition hover:text-white">
             Method
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
