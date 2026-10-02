@@ -346,8 +346,8 @@ export const sports: Sport[] = [
       "Football excellence stacks athletic power with scheme knowledge, reliable tackling, and position-specific ball skills.",
     accent: "#f59e0b",
     image:
-      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "American football helmet on the field",
+      "https://images.unsplash.com/photo-1761258772151-355fcec6d882?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "American football quarterback throwing the ball",
     skills: [
       {
         slug: "strength-speed-and-power",
@@ -451,8 +451,8 @@ export const sports: Sport[] = [
       "Lacrosse blends stick craft with athletic footwork. Train these four skills to dominate ground balls, finishing, and decision-making.",
     accent: "#a3e635",
     image:
-      "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "Athletes training on a sports field",
+      "https://images.unsplash.com/photo-1550450877-efc847373b25?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "Lacrosse player holding a stick in front of the goal",
     skills: [
       {
         slug: "stick-skills",
