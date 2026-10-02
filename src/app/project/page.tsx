@@ -41,14 +41,14 @@ export default function ProjectPage() {
     <main className="flex-1">
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap&text=%E1%B4%9B%E1%B4%B8%E1%B4%98%E1%B4%87%20%EA%9C%B1%E1%B4%8F%E1%B4%8D%E1%B4%87%E1%B4%9B%CA%9C%C9%AA%C9%A2%20%E1%B4%9B%E1%B4%8F%20%EA%9C%B1%E1%B4%9B%E1%B4%80%CA%80%E1%B4%9B"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap&text=%CA%80%C9%AA%EA%9C%B1%E1%B4%87"
       />
       <article className="mx-auto max-w-4xl px-5 pb-24 pt-28 sm:px-8 sm:pt-32">
         <h1
           className="text-4xl leading-tight text-white sm:text-6xl"
           style={{ fontFamily: '"Noto Sans", sans-serif', fontWeight: 500 }}
         >
-          ᴛʏᴘᴇ ꜱᴏᴍᴇᴛʜɪɴɢ ᴛᴏ ꜱᴛᴀʀᴛ
+          ʀɪꜱᴇ
         </h1>
         <p className="mt-4 text-sm text-white/50">
           James Hayward · walkthrough for class
