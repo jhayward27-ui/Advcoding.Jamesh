@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function SiteHeader() {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
@@ -13,12 +15,12 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="flex items-center gap-5 text-sm text-white/75">
-          <Link href="/#sports" className="transition hover:text-white">
+          <a href={`${base}/#sports`} className="transition hover:text-white">
             Sports
-          </Link>
-          <Link href="/#method" className="transition hover:text-white">
+          </a>
+          <a href={`${base}/#method`} className="transition hover:text-white">
             Method
-          </Link>
+          </a>
           <Link href="/project" className="transition hover:text-white">
             Project
           </Link>

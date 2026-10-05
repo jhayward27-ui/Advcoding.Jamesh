@@ -59,7 +59,7 @@ export default function Home() {
         <SportGrid sports={sports} />
       </section>
 
-      <section id="method" className="border-t border-white/10 bg-black/20">
+      <section id="method" className="scroll-mt-8 border-t border-white/10 bg-black/20">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-[#9dffb0]/80">
