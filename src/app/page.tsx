@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SportGrid } from "@/components/sport-grid";
+import { TrainerChat } from "@/components/trainer-chat";
 import { sports } from "@/lib/sports-data";
 
 export default function Home() {
@@ -86,6 +87,22 @@ export default function Home() {
               Start with hockey →
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section id="trainer" className="scroll-mt-20 border-t border-white/10">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div>
+            <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Ask the trainer
+            </h2>
+            <p className="mt-4 leading-relaxed text-white/70">
+              Talk through a sport here. The trainer asks which skill you want,
+              then gives the practice steps, the weekly plan, or the video from
+              that page.
+            </p>
+          </div>
+          <TrainerChat />
         </div>
       </section>
 

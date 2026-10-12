@@ -21,6 +21,9 @@ export function SiteHeader() {
           <a href={`${base}/#method`} className="transition hover:text-white">
             Method
           </a>
+          <a href={`${base}/#trainer`} className="transition hover:text-white">
+            Trainer
+          </a>
           <Link href="/project" className="transition hover:text-white">
             Project
           </Link>
