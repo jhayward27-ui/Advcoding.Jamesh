@@ -14,7 +14,7 @@ export function SiteHeader() {
             Skill Lab
           </span>
         </Link>
-        <nav className="flex items-center gap-5 text-sm text-white/75">
+        <nav className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm text-white/75">
           <a href={`${base}/#sports`} className="transition hover:text-white">
             Sports
           </a>
@@ -24,6 +24,9 @@ export function SiteHeader() {
           <a href={`${base}/#trainer`} className="transition hover:text-white">
             Trainer
           </a>
+          <Link href="/dashboard" className="transition hover:text-white">
+            Dashboard
+          </Link>
           <Link href="/project" className="transition hover:text-white">
             Project
           </Link>

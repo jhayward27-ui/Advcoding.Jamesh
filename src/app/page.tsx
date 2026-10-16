@@ -40,6 +40,12 @@ export default function Home() {
             >
               How RISE works
             </a>
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
+            >
+              Log your stats
+            </Link>
           </div>
         </div>
       </section>

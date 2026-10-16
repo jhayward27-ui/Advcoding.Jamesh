@@ -4,7 +4,11 @@ Public site: [https://jhayward27-ui.github.io/Advcoding.Jamesh/](https://jhaywar
 
 Project overview for class: [https://jhayward27-ui.github.io/Advcoding.Jamesh/project/](https://jhayward27-ui.github.io/Advcoding.Jamesh/project/)
 
+Performance dashboard: [https://jhayward27-ui.github.io/Advcoding.Jamesh/dashboard/](https://jhayward27-ui.github.io/Advcoding.Jamesh/dashboard/)
+
 A training guide website for athletes who want to get better and grow their knowledge in a sport. Pick a sport, then open one of four major skills for training videos, how to improve, and a weekly plan.
+
+The performance dashboard is where you log your own numbers. Sprint times, lifts, practice minutes, and sport-specific stats stay in this browser. The page shows personal bests, a progress chart, weekly goals, and a workout streak.
 
 ## Sports covered
 
