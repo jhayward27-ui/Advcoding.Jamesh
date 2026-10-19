@@ -19,7 +19,7 @@ export type WeeklyGoal = {
 
 export const categoryLabels: Record<StatCategory, string> = {
   sprint: "Sprint",
-  strength: "Strength",
+  strength: "Lift",
   practice: "Practice",
   sport: "Sport stat",
 };
