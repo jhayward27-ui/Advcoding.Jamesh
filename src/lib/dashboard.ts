@@ -25,6 +25,19 @@ export const categoryLabels: Record<StatCategory, string> = {
   sport: "Sport stat",
 };
 
+const minutes = (label: string) => ({ label, unit: "min", lowerIsBetter: false });
+
+export const practiceDrills: Record<string, { label: string; unit: string; lowerIsBetter: boolean }[]> = {
+  General: [minutes("Skill work"), minutes("Conditioning"), minutes("Footwork")],
+  Hockey: [minutes("Skating"), minutes("Stickhandling"), minutes("Shooting"), minutes("Battle drills")],
+  Baseball: [minutes("Tee work"), minutes("Soft toss"), minutes("Throwing"), minutes("Fielding")],
+  Soccer: [minutes("Ball mastery"), minutes("Finishing"), minutes("Passing"), minutes("Agility")],
+  Football: [minutes("Route running"), minutes("Tackling"), minutes("Ball security"), minutes("Footwork")],
+  Lacrosse: [minutes("Stick skills"), minutes("Dodging"), minutes("Shooting"), minutes("Ground balls")],
+  Golf: [minutes("Swing reps"), minutes("Ball striking"), minutes("Putting"), minutes("Chipping")],
+  Basketball: [minutes("Ball handling"), minutes("Shooting"), minutes("Finishing"), minutes("Defensive slides")],
+};
+
 export const statPresets: Record<
   StatCategory,
   { label: string; unit: string; lowerIsBetter: boolean }[]
@@ -40,10 +53,7 @@ export const statPresets: Record<
     { label: "Deadlift", unit: "lb", lowerIsBetter: false },
     { label: "Pull-ups", unit: "reps", lowerIsBetter: false },
   ],
-  practice: [
-    { label: "Practice", unit: "min", lowerIsBetter: false },
-    { label: "Skill work", unit: "min", lowerIsBetter: false },
-  ],
+  practice: practiceDrills.General,
   sport: [{ label: "Custom stat", unit: "", lowerIsBetter: false }],
 };
 

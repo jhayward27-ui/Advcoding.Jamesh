@@ -3,7 +3,7 @@ import { CategoryLog } from "@/components/category-log";
 
 export const metadata: Metadata = {
   title: "Log a practice | RISE",
-  description: "Save practice and skill-work minutes, then see that time add up on a chart.",
+  description: "Add several drills to one practice, then follow each drill on its own chart.",
 };
 
 export default function PracticeLogPage() {
@@ -13,8 +13,8 @@ export default function PracticeLogPage() {
         Log a practice
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-white/70">
-        Write down how many minutes you practiced or did skill work. Those sessions stay on this
-        page.
+        Pick a sport to see its drills. Add more than one drill, with the minutes or the reps, then
+        save the practice.
       </p>
       <div className="mt-8">
         <CategoryLog category="practice" />

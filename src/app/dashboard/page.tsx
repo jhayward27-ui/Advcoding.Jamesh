@@ -22,7 +22,7 @@ const logPages = [
   {
     href: "/dashboard/practice",
     title: "Log a practice",
-    detail: "Minutes from a practice or from skill work on your own.",
+    detail: "Add more than one drill to the same practice. The list changes with the sport.",
   },
   {
     href: "/dashboard/sport",
