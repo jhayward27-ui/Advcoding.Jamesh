@@ -45,8 +45,16 @@ function presetsFor(category: StatCategory, sportName: string) {
   return [...fromSkills, ...statPresets.sport];
 }
 
+type DraftExercise = {
+  id: string;
+  label: string;
+  value: number;
+  unit: string;
+  lowerIsBetter: boolean;
+};
+
 export function CategoryLog({ category }: { category: StatCategory }) {
-  const { saved, addEntry, removeEntry } = useDashboardStore();
+  const { saved, addEntry, addEntries, removeEntry, removeSession } = useDashboardStore();
   const initialPresets = presetsFor(category, sports[0].name);
   const [sport, setSport] = useState(sports[0].name);
   const [label, setLabel] = useState(initialPresets[0].label);
@@ -56,6 +64,8 @@ export function CategoryLog({ category }: { category: StatCategory }) {
   const [date, setDate] = useState(todayKey());
   const [chartKey, setChartKey] = useState("");
   const [formError, setFormError] = useState("");
+  const [drafts, setDrafts] = useState<DraftExercise[]>([]);
+  const isLift = category === "strength";
 
   const presets = presetsFor(category, sport);
   const visible = useMemo(
@@ -85,6 +95,62 @@ export function CategoryLog({ category }: { category: StatCategory }) {
     if (category === "sport" && currentIsPreset) choosePreset(nextPresets[0]);
   }
 
+  function readExercise(): { ok: true; exercise: DraftExercise } | { ok: false; empty: boolean } {
+    if (!value.trim()) return { ok: false, empty: true };
+    const parsed = Number(value);
+    if (!label.trim() || !Number.isFinite(parsed) || parsed <= 0) return { ok: false, empty: false };
+    return {
+      ok: true,
+      exercise: {
+        id: crypto.randomUUID(),
+        label: label.trim(),
+        value: parsed,
+        unit: unit.trim(),
+        lowerIsBetter,
+      },
+    };
+  }
+
+  function addExercise() {
+    const current = readExercise();
+    if (!current.ok) {
+      setFormError("Enter an exercise and a number greater than 0.");
+      return;
+    }
+    setDrafts((currentDrafts) => [...currentDrafts, current.exercise]);
+    setValue("");
+    setFormError("");
+  }
+
+  function saveLift() {
+    const current = readExercise();
+    if (!current.ok && !current.empty) {
+      setFormError("Enter an exercise and a number greater than 0.");
+      return;
+    }
+    const exercises = current.ok ? [...drafts, current.exercise] : drafts;
+    if (exercises.length === 0) {
+      setFormError("Add at least one exercise.");
+      return;
+    }
+    addEntries(
+      exercises.map((exercise) => ({
+        date,
+        category,
+        sport,
+        label: exercise.label,
+        value: exercise.value,
+        unit: exercise.unit,
+        lowerIsBetter: exercise.lowerIsBetter,
+      })),
+    );
+    const last = exercises[exercises.length - 1];
+    setChartKey(metricKey({ sport, label: last.label, unit: last.unit, lowerIsBetter: last.lowerIsBetter }));
+    setDrafts([]);
+    setValue("");
+    setFormError("");
+  }
+
   function save() {
     const parsed = Number(value);
     if (!label.trim() || !Number.isFinite(parsed) || parsed <= 0) {
@@ -106,6 +172,19 @@ export function CategoryLog({ category }: { category: StatCategory }) {
     setChartKey(metricKey(entry));
   }
 
+  const liftGroups = useMemo(() => {
+    const groups = new Map<string, typeof visible>();
+    for (const entry of visible) {
+      const key = entry.sessionId ?? entry.id;
+      const group = groups.get(key) ?? [];
+      group.push(entry);
+      groups.set(key, group);
+    }
+    return [...groups.entries()]
+      .map(([id, exercises]) => ({ id, exercises }))
+      .sort((a, b) => b.exercises[0].date.localeCompare(a.exercises[0].date));
+  }, [visible]);
+
   const emptyLog =
     category === "sport"
       ? `No ${sport} stats logged yet.`
@@ -118,7 +197,7 @@ export function CategoryLog({ category }: { category: StatCategory }) {
   return (
     <div className="space-y-8">
       <section className="rounded-2xl border border-white/10 p-4 sm:p-5">
-        <h2 className="text-lg font-semibold text-white">Add an entry</h2>
+        <h2 className="text-lg font-semibold text-white">{isLift ? "Add exercises" : "Add an entry"}</h2>
         <div className="mt-4 flex flex-wrap gap-2">
           {presets.map((preset) => {
             const selected = label === preset.label;
@@ -153,7 +232,7 @@ export function CategoryLog({ category }: { category: StatCategory }) {
             </select>
           </label>
           <label className="text-sm text-white/60">
-            Stat
+            {isLift ? "Exercise" : "Stat"}
             <input
               list={`stat-presets-${category}`}
               value={label}
@@ -202,14 +281,51 @@ export function CategoryLog({ category }: { category: StatCategory }) {
         {category === "sport" ? (
           <p className="mt-3 text-sm text-white/45">Showing {sport} stats on this page.</p>
         ) : null}
+        {isLift && drafts.length > 0 ? (
+          <ul className="mt-4 divide-y divide-white/10 border-y border-white/10">
+            {drafts.map((exercise) => (
+              <li key={exercise.id} className="flex items-center justify-between gap-3 py-2 text-sm">
+                <span className="text-white">
+                  {exercise.label} · {formatValue(exercise.value, exercise.unit)}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setDrafts((currentDrafts) => currentDrafts.filter((item) => item.id !== exercise.id))}
+                  className="text-white/40 hover:text-white"
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {formError ? <p className="mt-3 text-sm text-red-300">{formError}</p> : null}
-        <button
-          type="button"
-          onClick={save}
-          className="mt-4 rounded-full bg-[#9dffb0] px-4 py-2.5 text-sm font-semibold text-[#07110e] hover:bg-white"
-        >
-          {saveLabels[category]}
-        </button>
+        {isLift ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={addExercise}
+              className="rounded-full border border-white/20 px-4 py-2.5 text-sm text-white hover:bg-white/10"
+            >
+              Add exercise
+            </button>
+            <button
+              type="button"
+              onClick={saveLift}
+              className="rounded-full bg-[#9dffb0] px-4 py-2.5 text-sm font-semibold text-[#07110e] hover:bg-white"
+            >
+              Save lift
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={save}
+            className="mt-4 rounded-full bg-[#9dffb0] px-4 py-2.5 text-sm font-semibold text-[#07110e] hover:bg-white"
+          >
+            {saveLabels[category]}
+          </button>
+        )}
       </section>
 
       <section className="rounded-2xl border border-white/10 p-4 sm:p-5">
@@ -217,7 +333,7 @@ export function CategoryLog({ category }: { category: StatCategory }) {
           <h2 className="text-lg font-semibold text-white">Progress</h2>
           {bests.length > 0 ? (
             <label className="text-sm text-white/60">
-              Stat
+              {isLift ? "Exercise" : "Stat"}
               <select
                 value={activeChartKey}
                 onChange={(event) => setChartKey(event.target.value)}
@@ -233,7 +349,15 @@ export function CategoryLog({ category }: { category: StatCategory }) {
           ) : null}
         </div>
         <div className="mt-4">
-          <ProgressChart points={chartPoints} lowerIsBetter={chartEntry?.lowerIsBetter ?? false} />
+          <ProgressChart
+            points={chartPoints}
+            lowerIsBetter={chartEntry?.lowerIsBetter ?? false}
+            emptyLabel={
+              isLift
+                ? "Log the same exercise at least once and the line will show up here."
+                : undefined
+            }
+          />
         </div>
       </section>
 
@@ -260,9 +384,33 @@ export function CategoryLog({ category }: { category: StatCategory }) {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold text-white">Recent logs</h2>
+        <h2 className="text-lg font-semibold text-white">{isLift ? "Recent lifts" : "Recent logs"}</h2>
         {visible.length === 0 ? (
           <p className="mt-3 text-sm text-white/50">{emptyLog}</p>
+        ) : isLift ? (
+          <ul className="mt-3 divide-y divide-white/10 border-y border-white/10">
+            {liftGroups.map((group) => (
+              <li key={group.id} className="flex items-start justify-between gap-3 py-3 text-sm">
+                <div>
+                  {group.exercises.map((exercise) => (
+                    <p key={exercise.id} className="text-white">
+                      {exercise.label} · {formatValue(exercise.value, exercise.unit)}
+                    </p>
+                  ))}
+                  <p className="text-white/45">
+                    {group.exercises[0].date} · {group.exercises[0].sport}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => (group.exercises[0].sessionId ? removeSession(group.id) : removeEntry(group.id))}
+                  className="text-white/40 hover:text-white"
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
         ) : (
           <ul className="mt-3 divide-y divide-white/10 border-y border-white/10">
             {visible

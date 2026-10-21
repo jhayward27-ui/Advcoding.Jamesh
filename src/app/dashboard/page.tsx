@@ -17,7 +17,7 @@ const logPages = [
   {
     href: "/dashboard/lift",
     title: "Log a lift",
-    detail: "Bench, squat, deadlift, and pull-ups, with the weight or the reps.",
+    detail: "Add more than one exercise to the same lift, with the weight or the reps.",
   },
   {
     href: "/dashboard/practice",

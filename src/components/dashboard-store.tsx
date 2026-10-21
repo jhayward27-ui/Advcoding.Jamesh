@@ -30,7 +30,9 @@ type DashboardStore = {
   saved: Saved;
   ready: boolean;
   addEntry: (entry: Omit<StatEntry, "id">) => void;
+  addEntries: (entries: Omit<StatEntry, "id" | "sessionId">[]) => void;
   removeEntry: (id: string) => void;
+  removeSession: (sessionId: string) => void;
   addGoal: (title: string, target: number) => void;
   removeGoal: (id: string) => void;
 };
@@ -58,10 +60,21 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
       const next: StatEntry = { ...entry, id: crypto.randomUUID() };
       setSaved((current) => ({ ...current, entries: [next, ...current.entries] }));
     },
+    addEntries(entries) {
+      const sessionId = crypto.randomUUID();
+      const next = entries.map((entry) => ({ ...entry, id: crypto.randomUUID(), sessionId }));
+      setSaved((current) => ({ ...current, entries: [...next, ...current.entries] }));
+    },
     removeEntry(id) {
       setSaved((current) => ({
         ...current,
         entries: current.entries.filter((entry) => entry.id !== id),
+      }));
+    },
+    removeSession(sessionId) {
+      setSaved((current) => ({
+        ...current,
+        entries: current.entries.filter((entry) => entry.sessionId !== sessionId),
       }));
     },
     addGoal(title, target) {

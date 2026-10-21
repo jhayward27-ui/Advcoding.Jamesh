@@ -9,6 +9,7 @@ export type StatEntry = {
   value: number;
   unit: string;
   lowerIsBetter: boolean;
+  sessionId?: string;
 };
 
 export type WeeklyGoal = {

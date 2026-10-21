@@ -3,7 +3,7 @@ import { CategoryLog } from "@/components/category-log";
 
 export const metadata: Metadata = {
   title: "Log a lift | RISE",
-  description: "Save bench, squat, deadlift, and pull-up numbers, then see your best lift on a chart.",
+  description: "Add several exercises to one lift, then see each exercise on its own chart.",
 };
 
 export default function LiftLogPage() {
@@ -13,7 +13,7 @@ export default function LiftLogPage() {
         Log a lift
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-white/70">
-        Enter the weight or the reps. This page only keeps lifts, separate from sprints and practice.
+        Add bench, squat, or any other exercise, then add another before you save. One lift can hold several exercises.
       </p>
       <div className="mt-8">
         <CategoryLog category="strength" />

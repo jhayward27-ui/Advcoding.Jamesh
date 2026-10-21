@@ -3,14 +3,16 @@ import { formatValue, type StatEntry } from "@/lib/dashboard";
 export function ProgressChart({
   points,
   lowerIsBetter,
+  emptyLabel = "Log the same stat at least once and the line will show up here.",
 }: {
   points: StatEntry[];
   lowerIsBetter: boolean;
+  emptyLabel?: string;
 }) {
   if (points.length === 0) {
     return (
       <p className="rounded-2xl border border-dashed border-white/15 px-4 py-10 text-center text-sm text-white/50">
-        Log the same stat at least once and the line will show up here.
+        {emptyLabel}
       </p>
     );
   }
