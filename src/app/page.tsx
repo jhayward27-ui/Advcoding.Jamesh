@@ -105,7 +105,7 @@ export default function Home() {
             <p className="mt-4 leading-relaxed text-white/70">
               Talk through a sport here. The trainer asks which skill you want,
               then gives the practice steps, the weekly plan, or the video from
-              that page.
+              that page. You can also ask it how to log a sprint, a lift, or a practice.
             </p>
           </div>
           <TrainerChat />

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { trainerGreeting, trainerReply, type TrainerContext } from "@/lib/trainer";
+import type { StatEntry, WeeklyGoal } from "@/lib/dashboard";
+import { trainerGreeting, trainerReply, type TrainerContext, type TrainerSnapshot } from "@/lib/trainer";
 
 type ChatMessage = {
   id: number;
@@ -25,10 +26,24 @@ export function TrainerChat() {
   const [context, setContext] = useState<TrainerContext>({});
   const [draft, setDraft] = useState("");
 
+  function readSnapshot(): TrainerSnapshot {
+    try {
+      const raw = localStorage.getItem("rise-dashboard-v1");
+      if (!raw) return { entries: [], goals: [] };
+      const parsed = JSON.parse(raw) as { entries?: StatEntry[]; goals?: WeeklyGoal[] };
+      return {
+        entries: Array.isArray(parsed.entries) ? parsed.entries : [],
+        goals: Array.isArray(parsed.goals) ? parsed.goals : [],
+      };
+    } catch {
+      return { entries: [], goals: [] };
+    }
+  }
+
   function send(raw: string) {
     const text = raw.trim();
     if (!text) return;
-    const reply = trainerReply(text, context);
+    const reply = trainerReply(text, context, readSnapshot());
     setContext(reply.context);
     setDraft("");
     setMessages((current) => {
