@@ -17,7 +17,7 @@ const logPages = [
   {
     href: "/dashboard/lift",
     title: "Log a lift",
-    detail: "Add more than one exercise to the same lift, with the weight or the reps.",
+    detail: "Fill a workout plan. Empty slots are there so you can type in as many exercises as you did.",
   },
   {
     href: "/dashboard/practice",

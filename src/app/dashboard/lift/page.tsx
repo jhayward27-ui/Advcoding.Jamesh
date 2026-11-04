@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { CategoryLog } from "@/components/category-log";
+import { LiftWorkout } from "@/components/lift-workout";
 
 export const metadata: Metadata = {
   title: "Log a lift | RISE",
-  description: "Add several exercises to one lift, then see each exercise on its own chart.",
+  description: "Build a workout plan with empty exercise slots, then save every exercise in that lift.",
 };
 
 export default function LiftLogPage() {
@@ -13,10 +13,10 @@ export default function LiftLogPage() {
         Log a lift
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-white/70">
-        Add bench, squat, or any other exercise, then add another before you save. One lift can hold several exercises.
+        The workout plan starts with empty slots. Type any exercise into each one, add more slots if you need them, and save the whole lift at once.
       </p>
       <div className="mt-8">
-        <CategoryLog category="strength" />
+        <LiftWorkout />
       </div>
     </>
   );
