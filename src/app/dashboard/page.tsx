@@ -27,7 +27,7 @@ const logPages = [
   {
     href: "/dashboard/sport",
     title: "Stats from your sport",
-    detail: "Pick hockey, baseball, soccer, or any other sport and log a number from that game.",
+    detail: "Pick a sport, then log the date, goals, assists, and points from a game.",
   },
 ];
 

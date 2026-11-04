@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { CategoryLog } from "@/components/category-log";
+import { GameStats } from "@/components/game-stats";
 
 export const metadata: Metadata = {
   title: "Sport stats | RISE",
-  description: "Pick a sport and log a stat from that game, then follow it on its own chart.",
+  description: "Pick a sport and log goals, assists, and points from a game.",
 };
 
 export default function SportStatPage() {
@@ -13,11 +13,11 @@ export default function SportStatPage() {
         Stats from your sport
       </h1>
       <p className="mt-4 max-w-2xl leading-relaxed text-white/70">
-        Choose the sport first. The buttons match that sport&apos;s four skills, or type your own
-        stat, like shots, goals, or a drill score. Switching sports shows only that sport.
+        Choose the sport, pick the date of the game, and write down your goals, assists, and points.
+        Switching sports shows only the games from that sport.
       </p>
       <div className="mt-8">
-        <CategoryLog category="sport" />
+        <GameStats />
       </div>
     </>
   );
