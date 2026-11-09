@@ -136,8 +136,8 @@ export const sports: Sport[] = [
       "Baseball rewards precision. These four skills cover the bat, the arm, the athletic engine, and the mental game that wins counts and innings.",
     accent: "#ef4444",
     image:
-      "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "Baseball batter waiting for a pitch",
+      "https://images.unsplash.com/photo-1529768167801-9173d94c2a42?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "Baseball batter swinging at a pitch",
     skills: [
       {
         slug: "hitting",
