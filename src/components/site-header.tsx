@@ -30,6 +30,9 @@ export function SiteHeader() {
           <Link href="/project" className="transition hover:text-white">
             Project
           </Link>
+          <Link href="/showcase" className="transition hover:text-white">
+            Showcase
+          </Link>
         </nav>
       </div>
     </header>

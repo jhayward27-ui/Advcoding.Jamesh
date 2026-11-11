@@ -64,6 +64,14 @@ export default function ProjectPage() {
           I stuck to four skills per sport because a huge drill list is easy to
           skip. Four things is enough to know what to practice this week.
         </p>
+        <p className="mt-4 leading-relaxed text-white/70">
+          The class talk is a slideshow, about six and a half minutes, with a
+          live click-through.{" "}
+          <Link href="/showcase" className="text-white underline decoration-white/30 underline-offset-2 hover:decoration-white">
+            Open the showcase
+          </Link>
+          .
+        </p>
 
         <h2 className="mt-14 text-2xl font-semibold text-white">
           Opening screen
