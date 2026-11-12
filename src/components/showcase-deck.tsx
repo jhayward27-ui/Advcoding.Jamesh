@@ -46,10 +46,10 @@ export function ShowcaseDeck() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col bg-[#f4f0e6] text-[#241f1a]"
+      className="fixed inset-0 z-50 flex flex-col bg-[#e4e4e4] text-[#241f1a]"
       style={{ fontFamily: '"Segoe UI", "Helvetica Neue", Arial, sans-serif' }}
     >
-      <header className="flex items-baseline justify-between gap-4 border-b border-[#241f1a]/15 px-5 py-3 sm:px-10">
+      <header className="flex items-baseline justify-between gap-4 border-b border-black/15 px-5 py-3 sm:px-10">
         <Link href="/" className="text-[1.05rem] text-[#241f1a] no-underline">
           <span style={{ fontFamily: 'Georgia, "Iowan Old Style", Palatino, serif' }}>RISE Skill Lab</span>
         </Link>
@@ -57,7 +57,7 @@ export function ShowcaseDeck() {
       </header>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 sm:px-10 sm:py-8">
-        <div key={index} className="mx-auto max-w-3xl">
+        <div key={index} className="mx-auto flex min-h-full w-full max-w-6xl flex-col justify-center">
           {index === 0 ? <Open /> : null}
           {index === 1 ? <Cut /> : null}
           {index === 2 ? <Demo /> : null}
@@ -69,7 +69,7 @@ export function ShowcaseDeck() {
         </div>
       </div>
 
-      <footer className="flex items-center justify-between gap-3 border-t border-[#241f1a]/15 px-5 py-3 sm:px-10">
+      <footer className="flex items-center justify-between gap-3 border-t border-black/15 px-5 py-3 sm:px-10">
         <button
           type="button"
           onClick={() => go(index - 1)}
@@ -108,7 +108,7 @@ export function ShowcaseDeck() {
 function Title({ children }: { children: ReactNode }) {
   return (
     <h1
-      className="text-4xl leading-tight text-[#241f1a] sm:text-5xl"
+      className="text-3xl leading-tight text-[#241f1a] sm:text-4xl"
       style={{ fontFamily: 'Georgia, "Iowan Old Style", Palatino, serif' }}
     >
       {children}
@@ -116,16 +116,31 @@ function Title({ children }: { children: ReactNode }) {
   );
 }
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function Shot({ file, alt }: { file: string; alt: string }) {
+  return (
+    <img
+      src={`${base}/showcase/${file}`}
+      alt={alt}
+      className="max-h-[68vh] w-full border border-black/20 bg-white object-contain object-top"
+    />
+  );
+}
+
 function Open() {
   return (
-    <div>
-      <Title>RISE Skill Lab</Title>
-      <p className="mt-5 max-w-xl text-lg leading-relaxed">
-        You pick a sport, then one of four skills. That page tells you what to work on and plays a video.
-      </p>
-      <p className="mt-3 max-w-xl text-lg leading-relaxed">
-        If you want to keep your own numbers, the dashboard logs a sprint, a lift, a practice, or a game.
-      </p>
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>RISE Skill Lab</Title>
+        <p className="mt-5 text-lg leading-relaxed">
+          You pick a sport, then one of four skills. That page tells you what to work on and plays a video.
+        </p>
+        <p className="mt-3 text-lg leading-relaxed">
+          If you want to keep your own numbers, the dashboard logs a sprint, a lift, a practice, or a game.
+        </p>
+      </div>
+      <Shot file="home.jpg" alt="Home page with the RISE title and buttons for choosing a sport, reading how it works, and logging stats" />
     </div>
   );
 }
@@ -133,45 +148,54 @@ function Open() {
 function Cut() {
   const hockey = sports.find((sport) => sport.slug === "hockey");
   return (
-    <div>
-      <Title>Four skills, not a long drill list</Title>
-      <p className="mt-5 max-w-xl text-lg leading-relaxed">
-        A huge list is easy to skip. Four things is enough to know what to practice this week.
-      </p>
-      <p className="mt-4 text-lg leading-relaxed">
-        {sports.map((sport) => sport.name).join(", ")}.
-      </p>
-      {hockey ? (
-        <p className="mt-4 max-w-xl text-lg leading-relaxed">
-          Hockey is {hockey.skills.map((skill) => skill.name).join(", ")}. The other sports are set up the same way, with skills that fit that sport.
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>Four skills, not a long drill list</Title>
+        <p className="mt-5 text-lg leading-relaxed">
+          A huge list is easy to skip. Four things is enough to know what to practice this week.
         </p>
-      ) : null}
+        <p className="mt-4 text-lg leading-relaxed">
+          {sports.map((sport) => sport.name).join(", ")}.
+        </p>
+        {hockey ? (
+          <p className="mt-4 text-lg leading-relaxed">
+            Hockey is {hockey.skills.map((skill) => skill.name).join(", ")}. The other sports are set up the same way, with skills that fit that sport.
+          </p>
+        ) : null}
+      </div>
+      <Shot file="sports.jpg" alt="The seven sport tiles on the home page, each marked 4 skills" />
     </div>
   );
 }
 
 function Demo() {
   return (
-    <div>
-      <Title>Open one skill</Title>
-      <ol className="mt-5 list-decimal space-y-2 pl-5 text-lg leading-relaxed">
-        <li>Pick a sport.</li>
-        <li>Open one of its skills.</li>
-        <li>The page has why it matters, how to get better, a weekly plan, and a video.</li>
-      </ol>
-      <p className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-lg">
-        {sports.map((sport) => (
-          <Link
-            key={sport.slug}
-            href={`/sports/${sport.slug}`}
-            target="_blank"
-            className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4"
-          >
-            {sport.name}
-          </Link>
-        ))}
-      </p>
-      <p className="mt-3 text-sm text-[#241f1a]/70">The sport opens in a new tab, so these slides stay here.</p>
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>Open one skill</Title>
+        <ol className="mt-5 list-decimal space-y-2 pl-5 text-lg leading-relaxed">
+          <li>Pick a sport.</li>
+          <li>Open one of its skills.</li>
+          <li>The page has why it matters, how to get better, a weekly plan, and a video.</li>
+        </ol>
+        <p className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-lg">
+          {sports.map((sport) => (
+            <Link
+              key={sport.slug}
+              href={`/sports/${sport.slug}`}
+              target="_blank"
+              className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4"
+            >
+              {sport.name}
+            </Link>
+          ))}
+        </p>
+        <p className="mt-3 text-sm text-[#241f1a]/70">The sport opens in a new tab, so these slides stay here.</p>
+      </div>
+      <Shot
+        file="skating.jpg"
+        alt="Hockey skating page with why it matters, four practice steps, a weekly plan, and the edge-work video"
+      />
     </div>
   );
 }
@@ -185,43 +209,52 @@ function Numbers() {
   ] as const;
 
   return (
-    <div>
-      <Title>Log one number</Title>
-      <ul className="mt-5 space-y-3 text-lg">
-        {logs.map(([title, href, detail]) => (
-          <li key={href}>
-            <Link href={href} target="_blank" className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
-              {title}
-            </Link>
-            <span className="text-[#241f1a]"> — {detail}</span>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-5 max-w-xl text-lg leading-relaxed">
-        The personal best, the chart, and the streak update on this computer. They are not sent to a server.
-      </p>
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>Log one number</Title>
+        <ul className="mt-5 space-y-3 text-lg">
+          {logs.map(([title, href, detail]) => (
+            <li key={href}>
+              <Link href={href} target="_blank" className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
+                {title}
+              </Link>
+              <span className="text-[#241f1a]"> — {detail}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 text-lg leading-relaxed">
+          The personal best, the chart, and the streak update on this computer. They are not sent to a server.
+        </p>
+      </div>
+      <Shot
+        file="dashboard.jpg"
+        alt="Dashboard with cards for logging a sprint, a lift, a practice, and game stats, plus the streak and personal bests"
+      />
     </div>
   );
 }
 
 function Trainer() {
   return (
-    <div>
-      <Title>Ask the trainer</Title>
-      <p className="mt-5 max-w-xl text-lg leading-relaxed">
-        Type something like “Weekly plan for hockey skating.” It answers from the skating page:
-      </p>
-      <blockquote className="mt-4 border-l-2 border-[#241f1a] pl-4 text-lg leading-relaxed">
-        2 edge-quality sessions. 1 transition and stopping session. 1 game-speed skating circuit after practice.
-      </blockquote>
-      <p className="mt-4 max-w-xl text-lg leading-relaxed">
-        It is not ChatGPT. The reply is the guide already written on the site, and it links you to that page.
-      </p>
-      <p className="mt-4">
-        <Link href="/#trainer" target="_blank" className="text-lg text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
-          Open the trainer
-        </Link>
-      </p>
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>Ask the trainer</Title>
+        <p className="mt-5 text-lg leading-relaxed">
+          Type something like “Weekly plan for hockey skating.” It answers from the skating page.
+        </p>
+        <p className="mt-4 text-lg leading-relaxed">
+          It is not ChatGPT. The reply is the guide already written on the site, and it links you to that page.
+        </p>
+        <p className="mt-4">
+          <Link href="/#trainer" target="_blank" className="text-lg text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
+            Open the trainer
+          </Link>
+        </p>
+      </div>
+      <Shot
+        file="trainer.jpg"
+        alt="Trainer chat answering a weekly plan for hockey skating with the edge sessions from the skating page"
+      />
     </div>
   );
 }
@@ -238,7 +271,7 @@ function Specs() {
   ];
 
   return (
-    <div>
+    <div className="max-w-3xl">
       <Title>What it runs on</Title>
       <dl className="mt-5">
         {rows.map(([term, detail]) => (
@@ -254,50 +287,50 @@ function Specs() {
 
 function Teach() {
   return (
-    <div>
-      <Title>A site can just be files</Title>
-      <ol className="mt-5 list-decimal space-y-3 pl-5 text-lg leading-relaxed">
-        <li>The pages are React. All seven sports live in one data file.</li>
-        <li>
-          <span className="font-mono text-base">next build</span> with{" "}
-          <span className="font-mono text-base">output: &quot;export&quot;</span> writes normal files into a folder called out.
-        </li>
-        <li>Pushing main runs GitHub Actions. GitHub Pages hosts that folder, so the link works when my laptop is closed.</li>
-      </ol>
-      <p className="mt-5 max-w-xl text-lg leading-relaxed">
-        The stats do not need a database. localStorage is storage inside the browser. A sprint time stays on the laptop that logged it.
-      </p>
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>A site can just be files</Title>
+        <ol className="mt-5 list-decimal space-y-3 pl-5 text-lg leading-relaxed">
+          <li>The pages are React. All seven sports live in one data file.</li>
+          <li>
+            <span className="font-mono text-base">next build</span> with{" "}
+            <span className="font-mono text-base">output: &quot;export&quot;</span> writes normal files into a folder called out.
+          </li>
+          <li>Pushing main runs GitHub Actions. GitHub Pages hosts that folder, so the link works when my laptop is closed.</li>
+        </ol>
+        <p className="mt-5 text-lg leading-relaxed">
+          The stats do not need a database. localStorage is storage inside the browser. A sprint time stays on the laptop that logged it.
+        </p>
+      </div>
+      <Shot file="home.jpg" alt="The published home page, which is the folder of files GitHub Pages serves" />
     </div>
   );
 }
 
 function Close() {
   return (
-    <div>
-      <Title>The site</Title>
-      <p className="mt-5 text-lg leading-relaxed">Pick a sport, open a skill, or log one number.</p>
-      <p className="mt-4">
-        <a href={SITE} className="break-all text-xl text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
-          {SITE}
-        </a>
-      </p>
-      <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-lg">
-        <a href={SITE} className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
-          Home
-        </a>
-        <a
-          href={`${SITE}sports/baseball/hitting/`}
-          className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4"
-        >
-          Baseball hitting
-        </a>
-        <a
-          href={`${SITE}dashboard/`}
-          className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4"
-        >
-          Dashboard
-        </a>
-      </p>
+    <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div>
+        <Title>The site</Title>
+        <p className="mt-5 text-lg leading-relaxed">Pick a sport, open a skill, or log one number.</p>
+        <p className="mt-4">
+          <a href={SITE} className="break-all text-xl text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
+            {SITE}
+          </a>
+        </p>
+        <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-lg">
+          <a href={SITE} className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4">
+            Home
+          </a>
+          <a
+            href={`${SITE}dashboard/`}
+            className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4"
+          >
+            Dashboard
+          </a>
+        </p>
+      </div>
+      <Shot file="hockey-skills.jpg" alt="Hockey page showing the four skill cards: Skating, Strength and Athleticism, Puck Skills, and IQ" />
     </div>
   );
 }
