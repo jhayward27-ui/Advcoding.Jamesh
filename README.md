@@ -4,7 +4,7 @@ Public site: [https://jhayward27-ui.github.io/Advcoding.Jamesh/](https://jhaywar
 
 Project overview for class: [https://jhayward27-ui.github.io/Advcoding.Jamesh/project/](https://jhayward27-ui.github.io/Advcoding.Jamesh/project/)
 
-Six-minute tech showcase: [https://jhayward27-ui.github.io/Advcoding.Jamesh/showcase/](https://jhayward27-ui.github.io/Advcoding.Jamesh/showcase/)
+Class slides: [https://jhayward27-ui.github.io/Advcoding.Jamesh/showcase/](https://jhayward27-ui.github.io/Advcoding.Jamesh/showcase/)
 
 Performance dashboard: [https://jhayward27-ui.github.io/Advcoding.Jamesh/dashboard/](https://jhayward27-ui.github.io/Advcoding.Jamesh/dashboard/)
 

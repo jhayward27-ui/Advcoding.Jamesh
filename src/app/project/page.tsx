@@ -65,10 +65,9 @@ export default function ProjectPage() {
           skip. Four things is enough to know what to practice this week.
         </p>
         <p className="mt-4 leading-relaxed text-white/70">
-          The class talk is a slideshow, about six and a half minutes, with a
-          live click-through.{" "}
+          The slides for class are{" "}
           <Link href="/showcase" className="text-white underline decoration-white/30 underline-offset-2 hover:decoration-white">
-            Open the showcase
+            here
           </Link>
           .
         </p>
