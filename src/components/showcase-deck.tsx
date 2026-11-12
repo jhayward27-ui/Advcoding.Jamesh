@@ -155,12 +155,11 @@ function Demo() {
     <div>
       <Title>Open one skill</Title>
       <ol className="mt-5 list-decimal space-y-2 pl-5 text-lg leading-relaxed">
-        <li>Someone names a sport they play.</li>
-        <li>Open that sport, then one skill.</li>
+        <li>Pick a sport.</li>
+        <li>Open one of its skills.</li>
         <li>The page has why it matters, how to get better, a weekly plan, and a video.</li>
       </ol>
-      <p className="mt-5 text-lg">Baseball hitting is an easy page to open.</p>
-      <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-lg">
+      <p className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-lg">
         {sports.map((sport) => (
           <Link
             key={sport.slug}
@@ -171,13 +170,6 @@ function Demo() {
             {sport.name}
           </Link>
         ))}
-        <Link
-          href="/sports/baseball/hitting"
-          target="_blank"
-          className="text-[#1d4e89] underline decoration-[#1d4e89]/40 underline-offset-4"
-        >
-          Baseball hitting
-        </Link>
       </p>
       <p className="mt-3 text-sm text-[#241f1a]/70">The sport opens in a new tab, so these slides stay here.</p>
     </div>
